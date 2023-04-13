@@ -67,4 +67,9 @@ void sortList()
 void displayList()
 {
     // BODY
+
+    cout << "\n\n"
+         << endl;
+    cout << "Artist \t Title" << endl;
+    cout << "============================" << endl;
 }
