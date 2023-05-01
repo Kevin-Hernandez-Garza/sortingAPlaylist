@@ -10,66 +10,73 @@
 // then an algorithm sorts the playlist according to the artist name.
 //  ******************************************************************
 
-/*
-You will write a program that allows the user to enter 10 songs and their artists into
-a playlist and will sort the entries by artist order.  The program should use a 10 element
-array of structure objects that holds two string variables:  artist and title.  Once the data
-has been read in and stored, it should sort the entries in ascending order by artist.
-It should then display the sorted array with appropriate headings.
-
-
-Modularity:   The main function should create the Playlist object and call at least three other functions:
-
-
-1.	Get the data from the user. Using a loop, have the user populate the playlist object array with
-10 artist and songs in no particular order.   No validation is necessary.   However, you should use
-the C++ getline function instead of cin so that the user can type spaces in the name and song title.
-
-
-2.	Sort the list.  You may use either the bubble sort or the selection sort to sort your playlist.
-
-
-3.	Display the list.  The function should display the artist and title in sorted order with appropriate headings.
-
-Sample Output:
-Playlist
-Artist			Title
-======================================
-Cream			Sunshine of Your Love
-Jimi Hendrix		All Along the Watchtower
-Stevie Ray Vaughn	Texas Flood
-ZZ Top			La Grange
-*/
-
 #include <iostream>
+#include <string>
 using namespace std;
 
-void getData();
-void sortList();
-void displayList();
+// Define the structure for a song
+struct Song
+{
+    string artist;
+    string title;
+};
 
+// Function prototypes
+void getData(Song[]);
+void sortPlaylist(Song[]);
+void displayPlaylist(Song[]);
+
+// Main function
 int main()
 {
+    // Create an array of 10 Song objects
+    Song playlist[10];
+
+    // Call the functions to get the data, sort the playlist, and display it
+    getData(playlist);
+    sortPlaylist(playlist);
+    displayPlaylist(playlist);
 
     return 0;
 }
 
-void getData()
+// Function to get the data from the user
+void getData(Song playlist[])
 {
-    // BODY
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "Enter the artist and title of song " << i + 1 << ": ";
+        getline(cin, playlist[i].artist);
+        getline(cin, playlist[i].title);
+    }
 }
 
-void sortList()
+// Function to sort the playlist in ascending order by artist
+void sortPlaylist(Song playlist[])
 {
-    // BODY
+    int i, j;
+    Song temp;
+    for (i = 0; i < 9; i++)
+    {
+        for (j = i + 1; j < 10; j++)
+        {
+            if (playlist[i].artist > playlist[j].artist)
+            {
+                temp = playlist[i];
+                playlist[i] = playlist[j];
+                playlist[j] = temp;
+            }
+        }
+    }
 }
 
-void displayList()
+// Function to display the playlist
+void displayPlaylist(Song playlist[])
 {
-    // BODY
-
-    cout << "\n\n"
-         << endl;
-    cout << "Artist \t Title" << endl;
-    cout << "============================" << endl;
+    cout << "Artist\t\tTitle\n";
+    cout << "------------------------------------\n";
+    for (int i = 0; i < 10; i++)
+    {
+        cout << playlist[i].artist << "\t\t" << playlist[i].title << "\n";
+    }
 }
