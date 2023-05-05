@@ -14,48 +14,51 @@
 #include <string>
 using namespace std;
 
-// Define the structure for a song
+// structure for song
 struct Song
 {
     string artist;
     string title;
 };
 
-// Function prototypes
-void getData(Song[]);
-void sortPlaylist(Song[]);
-void displayPlaylist(Song[]);
+// the function prototypes
+void getUserData(Song[]);
+void sortListInAsc(Song[]);
+void showList(Song[]);
 
-// Main function
 int main()
 {
-    // Create an array of 10 Song objects
+    // creates the array named playlist that contains 10 songs
     Song playlist[10];
 
-    // Call the functions to get the data, sort the playlist, and display it
-    getData(playlist);
-    sortPlaylist(playlist);
-    displayPlaylist(playlist);
+    // calls the functions
+    getUserData(playlist);
+    sortListInAsc(playlist);
+    showList(playlist);
 
     return 0;
 }
 
-// Function to get the data from the user
-void getData(Song playlist[])
+// gets users data
+void getUserData(Song playlist[])
 {
     for (int i = 0; i < 10; i++)
     {
-        cout << "Enter the artist and title of song " << i + 1 << ": ";
+        // iterates over each input
+        cout << "Enter the artist name " << i + 1 << ": ";
         getline(cin, playlist[i].artist);
+        cout << "Enter the song name : " << endl;
         getline(cin, playlist[i].title);
     }
 }
 
-// Function to sort the playlist in ascending order by artist
-void sortPlaylist(Song playlist[])
+// this function sorts the songs and artist names in ascending order
+void sortListInAsc(Song playlist[])
 {
+    // creates integer variables
     int i, j;
     Song temp;
+    // iterates over each song to sort it
     for (i = 0; i < 9; i++)
     {
         for (j = i + 1; j < 10; j++)
@@ -70,13 +73,14 @@ void sortPlaylist(Song playlist[])
     }
 }
 
-// Function to display the playlist
-void displayPlaylist(Song playlist[])
+// this function makes sure to show the playlist on the console
+void showList(Song playlist[])
 {
-    cout << "Artist\t\tTitle\n";
-    cout << "------------------------------------\n";
+    cout << "Artist\tTitle";
+    cout << endl;
+    cout << "================================\n";
     for (int i = 0; i < 10; i++)
     {
-        cout << playlist[i].artist << "\t\t" << playlist[i].title << "\n";
+        cout << playlist[i].artist << "\t\t" << playlist[i].title << endl;
     }
 }
